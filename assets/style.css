@@ -1,0 +1,17 @@
+* {
+    background-color: rgb(252, 152, 58);
+}
+
+.field {
+    display: flex;
+    justify-content: center;
+
+}
+
+.field-content {
+    height: 700px;
+    width: 100%;
+    background-color: rgb(190, 190, 219);
+    margin: 70px;
+    margin-top: 20px;
+}

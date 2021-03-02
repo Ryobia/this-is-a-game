@@ -1,5 +1,5 @@
 * {
-    background-color: rgb(252, 152, 58);
+    background-color: rgb(31, 22, 65);
 }
 
 .field {
@@ -10,8 +10,15 @@
 
 .field-content {
     height: 700px;
-    width: 100%;
-    background-color: rgb(190, 190, 219);
+    width: 1400px;
+    background-color: rgb(223, 223, 241);
     margin: 70px;
     margin-top: 20px;
+}
+
+.handi {
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
+
 }

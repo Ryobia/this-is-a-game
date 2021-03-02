@@ -9,7 +9,7 @@
 }
 
 .field-content {
-    height: 700px;
+    height: 650px;
     width: 1400px;
     background-color: rgb(223, 223, 241);
     margin: 70px;
@@ -21,4 +21,8 @@
     left: 50%;
     bottom: 50%;
 
+}
+
+.baddie {
+    position: absolute;
 }

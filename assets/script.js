@@ -1,6 +1,7 @@
 let player = $('#player');
 let baddie = $('#baddie');
 let field = $('#field');
+let start = $('#startMenu');
 let speed = 10;
 let baddieSpeed = 10;
 let playerX = player.offset();
@@ -8,12 +9,12 @@ let playerX = player.offset();
 let baddieX = baddie.offset();
 
 
-let init = function() {
-
+let startMenu = function() {
+    $('#startMenu').show();
 
 };
 
-init();
+startMenu();
 
 
 let hitbox = function (player, baddie) {

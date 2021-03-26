@@ -1,5 +1,6 @@
-* {
+body {
     background-color: rgb(31, 22, 65);
+    
 }
 
 .field {
@@ -18,14 +19,14 @@
 
 .player {
     position: absolute;
-    left: 50%;
+    left: 0%;
     bottom: 50%;
 
 }
 
 .baddie {
     position: absolute;
-    left: 50%;
-    bottom: 85%
+    left: 90%;
+    bottom: 50%
     
 }

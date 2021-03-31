@@ -1,7 +1,9 @@
 let player = $('#player');
 let baddie = $('#baddie');
 let field = $('#field');
-let start = $('#startMenu');
+let score = $('#timer');
+let startMenu = $('#startMenu');
+let start = document.getElementById('start');
 let speed = 10;
 let baddieSpeed = 10;
 let playerX = player.offset();
@@ -9,13 +11,57 @@ let playerX = player.offset();
 let baddieX = baddie.offset();
 
 
-let startMenu = function() {
-    $('#startMenu').show();
+let init = function() {
+    $('#startMenu').toggle();
+    
+}
+
+let startGame = function() {
+    $('#startMenu').toggle();
+    let time = 0;
+    let backgroundJunk = setInterval(function() {
+        playerX = player.offset();
+        baddieX = baddie.offset();
+        baddieGo(playerX, baddieX);
+
+
+    
+        if (hitbox(player, baddie)) {
+            alert("He got you");
+            clearInterval(backgroundJunk);
+            clearInterval(timer);
+            init();
+        } else if (time >= 30) {
+            alert('Congrats! you beat this level!');
+            clearInterval(backgroundJunk);
+            clearInterval(timer);
+            init();
+
+        }
+    
+    }, 100);
+
+    let timer = setInterval(function() {
+        time += 1;
+        console.log(time);
+        $(score).html(time);
+        }, 1000);
+
 
 };
 
-startMenu();
+let resetGame = function() {
+    $('#startMenu').toggle();
 
+    // $(player).style
+    // $(baddie).style    add the screen position reset here
+
+};
+
+
+
+
+init();
 
 let hitbox = function (player, baddie) {
 
@@ -50,7 +96,6 @@ let outOfBounds = function(player, field, direction) {
     let fieldWidth = field.outerWidth(true);
     let fieldTop = fieldOffset.top + fieldHeight;
     let fieldLeft = fieldOffset.left + fieldWidth;
-    console.log(fieldOffset.left, fieldOffset.top);
 
     switch (direction) {
         case 'w':
@@ -74,27 +119,7 @@ let outOfBounds = function(player, field, direction) {
 };
 
 
-let backgroundJunk = setInterval(function() {
-    playerX = player.offset();
-    baddieX = baddie.offset();
-    baddieGo(playerX, baddieX);
-    
-    // if (outOfBounds(player, field)) {
-    //     console.log("in");
-    // } else if (!outOfBounds(player, field)) {
-    //     console.log("out")
-    // }
 
-    if (hitbox(player, baddie)) {
-        alert("He got you");
-        clearInterval(backgroundJunk);
-    }
-
-  
-    
-
-
-}, 100);
 
 let baddieGo = function(playerX, baddieX) {
 
@@ -142,7 +167,6 @@ document.addEventListener("keydown", function(e) {
 
             
             $(player).animate({left: '-=' + speed + 'px'}, 10);
-            console.log("out")
 
         }
       
@@ -177,3 +201,8 @@ document.addEventListener("keydown", function(e) {
     }
 });
 
+start.addEventListener('click', function() {
+    console.log("hi");
+    startGame();
+});
+ 

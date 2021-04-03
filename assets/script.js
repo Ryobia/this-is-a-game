@@ -1,13 +1,15 @@
 let player = $('#player');
 let baddie = $('#baddie');
 let field = $('#field');
-let score = $('#timer');
+let timerEl = $('#timer');
+let levelEl = $('#level');
 let startMenu = $('#startMenu');
 let start = document.getElementById('start');
+
+let level = 1;
 let speed = 10;
 let baddieSpeed = 10;
 let playerX = player.offset();
-
 let baddieX = baddie.offset();
 
 
@@ -30,12 +32,12 @@ let startGame = function() {
             alert("He got you");
             clearInterval(backgroundJunk);
             clearInterval(timer);
-            init();
+            resetGame();
         } else if (time >= 30) {
             alert('Congrats! you beat this level!');
             clearInterval(backgroundJunk);
             clearInterval(timer);
-            init();
+            resetGame();
 
         }
     
@@ -44,7 +46,7 @@ let startGame = function() {
     let timer = setInterval(function() {
         time += 1;
         console.log(time);
-        $(score).html(time);
+        $(timerEl).html(time);
         }, 1000);
 
 
@@ -52,6 +54,13 @@ let startGame = function() {
 
 let resetGame = function() {
     $('#startMenu').toggle();
+    $(player).css({'position': 'absolute', 'left':'0%', 'bottom':'50%'}); //this works everytime
+
+    $(baddie).css({'position': 'absolute', 'left':'90%', 'bottom':'50%'});//this rarely works and only if the game ends in a certain place
+
+    
+
+
 
     // $(player).style
     // $(baddie).style    add the screen position reset here
@@ -202,7 +211,6 @@ document.addEventListener("keydown", function(e) {
 });
 
 start.addEventListener('click', function() {
-    console.log("hi");
     startGame();
 });
  

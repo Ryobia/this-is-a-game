@@ -3,6 +3,10 @@ body {
     
 }
 
+header {
+    justify-content: space-evenly;
+}
+
 .field {
     display: flex;
     justify-content: center;
@@ -26,7 +30,19 @@ body {
 
 .baddie {
     position: absolute;
-    left: 90%;
+    left: 95%;
     bottom: 50%
     
+}
+
+.timer {
+    font-size: 30px;
+    padding-left: 50px;
+    padding-top: 20px;
+}
+
+.level {
+    font-size: 30px;
+    padding-right: 70px;
+    padding-top: 20px;
 }

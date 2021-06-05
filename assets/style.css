@@ -5,18 +5,18 @@
 .field {
     display: flex;
     justify-content: center;
-
+    margin: 50px;
 }
 
 .field-content {
-    height: 650px;
-    width: 1400px;
+    height: 700px;
+    width: 90%;
     background-color: rgb(223, 223, 241);
-    margin: 70px;
-    margin-top: 20px;
+    position: relative;
+    
 }
 
-.handi {
+.player {
     position: absolute;
     left: 50%;
     bottom: 50%;
@@ -25,4 +25,7 @@
 
 .baddie {
     position: absolute;
+    left: 50%;
+    bottom: 85%
+    
 }

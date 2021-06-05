@@ -1,9 +1,9 @@
-let handi = $('#handi');
+let player = $('#player');
 let baddie = $('#baddie');
-let pos = '0px';
+let field = $('#field');
 let speed = 10;
 let baddieSpeed = 10;
-let handiX = handi.offset();
+let playerX = player.offset();
 
 let baddieX = baddie.offset();
 
@@ -16,13 +16,13 @@ let init = function() {
 init();
 
 
-let hitbox = function (handi, baddie) {
+let hitbox = function (player, baddie) {
 
-    let handiOffset = handi.offset();
-    let handiHeight = handi.outerHeight(true);
-    let handiWidth = handi.outerWidth(true);
-    let handiTop = handiOffset.top + handiHeight;
-    let handiLeft = handiOffset.left + handiWidth;
+    let playerOffset = player.offset();
+    let playerHeight = player.outerHeight(true);
+    let playerWidth = player.outerWidth(true);
+    let playerTop = playerOffset.top + playerHeight;
+    let playerLeft = playerOffset.left + playerWidth;
 
     let baddieOffset = baddie.offset();
     let baddieHeight = baddie.outerHeight(true);
@@ -30,47 +30,88 @@ let hitbox = function (handi, baddie) {
     let baddieTop = baddieOffset.top + baddieHeight;
     let baddieLeft = baddieOffset.left + baddieWidth;
 
-    return !(handiTop < baddieOffset.top || handiOffset.top > baddieTop || handiLeft < baddieOffset.left || handiOffset.left > baddieLeft);
+    return !(playerTop < baddieOffset.top || 
+        playerOffset.top > baddieTop || 
+        playerLeft < baddieOffset.left || 
+        playerOffset.left > baddieLeft);
+};
+
+let outOfBounds = function(player, field, direction) {
+
+    let playerOffset = player.offset();
+    let playerHeight = player.outerHeight(true);
+    let playerWidth = player.outerWidth(true);
+    let playerTop = playerOffset.top + playerHeight;
+    let playerLeft = playerOffset.left + playerWidth;
+
+    let fieldOffset = field.offset();
+    let fieldHeight = field.outerHeight(true);
+    let fieldWidth = field.outerWidth(true);
+    let fieldTop = fieldOffset.top + fieldHeight;
+    let fieldLeft = fieldOffset.left + fieldWidth;
+    console.log(fieldOffset.left, fieldOffset.top);
+
+    switch (direction) {
+        case 'w':
+            return !(playerOffset.top - speed < fieldOffset.top);
+            break;
+
+        case 'a': 
+            return !(playerOffset.left - speed < fieldOffset.left);
+            break;
+        
+        case 's':
+            return !(playerTop + speed > fieldTop);
+            break;
+        
+        case 'd':
+            return !(playerLeft + speed > fieldLeft);
+            break;
+    };
+     
+
 };
 
 
 let backgroundJunk = setInterval(function() {
-    console.log(handiX);
-    console.log(baddieX);
-    handiX = handi.offset();
+    playerX = player.offset();
     baddieX = baddie.offset();
-    baddieGo(handiX, baddieX);
+    baddieGo(playerX, baddieX);
     
-    if (hitbox(handi, baddie)) {
-        console.log("He got you");
+    // if (outOfBounds(player, field)) {
+    //     console.log("in");
+    // } else if (!outOfBounds(player, field)) {
+    //     console.log("out")
+    // }
+
+    if (hitbox(player, baddie)) {
+        alert("He got you");
         clearInterval(backgroundJunk);
     }
+
+  
     
 
 
 }, 100);
 
-let baddieGo = function(handiX, baddieX) {
+let baddieGo = function(playerX, baddieX) {
 
 
    
-    if (baddieX.left < handiX.left) {
-        console.log("left");
+    if (baddieX.left < playerX.left) {
         $(baddie).animate({left: '+=' + baddieSpeed + 'px'}, 10);
 
     }
-    if (baddieX.left > handiX.left) {
-        console.log("right");
+    if (baddieX.left > playerX.left) {
         $(baddie).animate({left: '-=' + baddieSpeed + 'px'}, 10);
 
     }
-    if (baddieX.top < handiX.top) {
-        console.log("left");
+    if (baddieX.top < playerX.top) {
         $(baddie).animate({bottom: '-=' + baddieSpeed + 'px'}, 10);
         
     }
-    if (baddieX.top > handiX.top) {
-        console.log("right");
+    if (baddieX.top > playerX.top) {
         $(baddie).animate({bottom: '+=' + baddieSpeed + 'px'}, 10);
     }
 
@@ -83,17 +124,28 @@ let baddieGo = function(handiX, baddieX) {
 document.addEventListener("keydown", function(e) {
     if(e.key === 'w') {
         
-        $(handi).animate({bottom: '+=' + speed + 'px'}, 10);
-        // handi.style.bottom = `${parseInt(handi.style.bottom) + 5}px`;
+        if (outOfBounds(player, field, e.key)) {
 
-
+            $(player).animate({bottom: '+=' + speed + 'px'}, 10);
+            // player.style.bottom = `${parseInt(player.style.bottom) + 5}px`;
+       
+        }    
     }
 });
 
 document.addEventListener("keydown", function(e) {
     if(e.key === 'a') {
-        $(handi).animate({left: '-=' + speed + 'px'}, 10);
-        // handi.style.left = `${parseInt(handi.style.left) - 5}px`;
+        
+
+        if (outOfBounds(player, field, e.key)) {
+
+            
+            $(player).animate({left: '-=' + speed + 'px'}, 10);
+            console.log("out")
+
+        }
+      
+        // player.style.left = `${parseInt(player.style.left) - 5}px`;
 
 
     }
@@ -101,18 +153,25 @@ document.addEventListener("keydown", function(e) {
 
 document.addEventListener("keydown", function(e) {
     if(e.key === 's') {
-        $(handi).animate({bottom: '-=' + speed + 'px'}, 10);
-        // handi.style.bottom = `${parseInt(handi.style.bottom) - 5}px`;
 
+        if (outOfBounds(player, field, e.key)) {
 
+            $(player).animate({bottom: '-=' + speed + 'px'}, 10);
+            // player.style.bottom = `${parseInt(player.style.bottom) - 5}px`;
+
+        }
     }
 });
 
 document.addEventListener("keydown", function(e) {
     if(e.key === 'd') {
-            $(handi).animate({left: '+=' + speed + 'px'}, 10);
-            // handi.style.left = `${parseInt(handi.style.left) + 5}px`;
-        
+
+        if (outOfBounds(player, field, e.key)) {
+
+            $(player).animate({left: '+=' + speed + 'px'}, 10);
+            // player.style.left = `${parseInt(player.style.left) + 5}px`;
+            
+        }
 
     }
 });

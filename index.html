@@ -5,11 +5,52 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>What even is this?</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
+  <header class="row">
+    <p class="text-white timer">Time: <span class="" id="timer"></span></p>
+    <p class="text-white level">Level: <span class="" id="level"></span></p>
+
+  </header>
+
     <main>
+
+
+        <div class="modal" id="startMenu" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalCenteredLabel">Generic Survival Game</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <h6>Controls</h6>
+                  <ul>
+                      <li>Up: W</li>
+                      <li>Left: A</li>
+                      <li>Down: S</li>
+                      <li>Right: D</li>
+                  </ul>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" id="difficulty" class="btn btn-primary col" data-dismiss="modal">Difficulty</button>
+                  <button type="button" id="start" class="btn btn-primary col">Start Game</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          
+
+
         <section class="field">
+          
+
             <div id="field" class="field-content">
                 <img id="player" class="player" src="./assets/handi-capped.png" alt="handi-capped" height="50px">
                 <img id="baddie" class="baddie" src="./assets/baddie.png" alt="The-bad-guy" height="50px">    

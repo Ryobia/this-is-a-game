@@ -1,5 +1,10 @@
-* {
+body {
     background-color: rgb(31, 22, 65);
+    
+}
+
+header {
+    justify-content: space-evenly;
 }
 
 .field {
@@ -18,14 +23,26 @@
 
 .player {
     position: absolute;
-    left: 50%;
+    left: 0%;
     bottom: 50%;
 
 }
 
 .baddie {
     position: absolute;
-    left: 50%;
-    bottom: 85%
+    left: 95%;
+    bottom: 50%
     
+}
+
+.timer {
+    font-size: 30px;
+    padding-left: 50px;
+    padding-top: 20px;
+}
+
+.level {
+    font-size: 30px;
+    padding-right: 70px;
+    padding-top: 20px;
 }
